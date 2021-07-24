@@ -1,7 +1,7 @@
 import { getLayout } from '../components/SiteLayout'
 
 const Home = () => (
-  <div className='md:mx-24 flex flex-col px-8 space-y-3 mt-4'>
+  <div className='flex flex-col px-8 space-y-3 mt-4 md:px-0'>
     <h1 className='font-semibold text-2xl text-green-sheen'>Home</h1>
     <p className='text-lg text-us-independence'>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
