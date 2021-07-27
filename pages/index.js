@@ -1,3 +1,5 @@
+import nookies from 'nookies'
+
 export default function Home() {
   return (
     <div className='flex flex-col px-8 space-y-3 mt-4 md:px-0'>
@@ -13,4 +15,16 @@ export default function Home() {
       </p>
     </div>
   )
+}
+
+export async function getServerSideProps(ctx) {
+  nookies.set(ctx, 'token', ctx.query.token, {
+    maxAge: 30 * 24 * 60 * 60,
+    path: '/',
+    httpOnly: true,
+  })
+
+  return {
+    props: {},
+  }
 }

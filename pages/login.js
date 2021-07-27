@@ -1,4 +1,5 @@
 import { API_URL } from '../utils/urls'
+import nookies from 'nookies'
 
 export default function Login() {
   return (
@@ -47,4 +48,12 @@ export default function Login() {
       </div>
     </div>
   )
+}
+
+export async function getServerSideProps(ctx) {
+  const cookies = nookies.get(ctx)
+  console.log('cookies', cookies)
+  return {
+    props: { cookies },
+  }
 }
