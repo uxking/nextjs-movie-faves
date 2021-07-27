@@ -4,11 +4,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'deep-champaign': '#f2cc8f',
-        'green-sheen': '#81b29a',
-        'us-independence': '#3d405b',
-        'terra-cotta': '#e07a5f',
-        'egg-shell': '#f4f1de',
+        'sput-deep-brown': '#402637',
+        'sput-brown': '#3e2332',
+        'sput-pink': '#d96cb3',
+        'sput-red': '#a6175a',
+        'sput-purple': '#8d53a6',
+        'sput-black': '#0d0d0d',
       },
     },
   },
