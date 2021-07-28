@@ -7,7 +7,7 @@ export default function Navbar() {
   /* get state from valtio proxy to check for a logged in user
   so we can change the login button to say logout */
   const snap = useSnapshot(state)
-  let buttonText = !snap.email ? 'Login' : 'Logout'
+  let buttonText = !snap.isLoggedIn ? 'Login' : 'Logout'
 
   const [isOpen, setOpen] = useState(false)
 

@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { API_URL } from '../../../utils/urls'
 import { state } from '../../../utils/state'
+import { setCookie } from 'nookies'
 
 export default function Redirects() {
   const [text, setText] = useState('loading...')
@@ -16,13 +17,17 @@ export default function Redirects() {
       )
 
       const data = await res.json()
-      console.log(data)
+      console.log('data', data)
 
-      /* set the email in valtio state */
-      state.email = data.user.email
+      /* lets set a client side cookie for emailAddress */
+      setCookie(null, 'emailAddress', data.user.email, {
+        maxAge: 3600,
+        path: '/',
+      })
+      state.isLoggedIn = true
 
       setText(
-        `You are now logged in ${state.email}. You will be redirected in a few seconds...`
+        `You are now logged in as ${data.user.email}. You will be redirected in a few seconds...`
       )
 
       /* Once logged in, send user to the home page along with the token */
@@ -45,5 +50,5 @@ export default function Redirects() {
     getData()
   }, [router.isReady])
 
-  return <p>{text}</p>
+  return <p className='mx-6 font-medium text-lg'>{text}</p>
 }

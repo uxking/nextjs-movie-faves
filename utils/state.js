@@ -1,8 +1,7 @@
 import { proxy } from 'valtio'
 
 const state = proxy({
-  name: '',
-  email: '',
+  isLoggedIn: false,
 })
 
 export { state }

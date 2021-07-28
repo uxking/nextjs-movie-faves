@@ -1,15 +1,9 @@
 import Link from 'next/link'
-import { state } from '../utils/state'
-import { useSnapshot } from 'valtio'
+import { parseCookies } from 'nookies'
 
 export default function LogoutCard() {
-  const handleLogout = () => {
-    // ctx.res.setHeader('Set-Cookie', ['token=deleted; Max-Age=0'])
-    console.log(response)
-    console.log('handleLogout ran')
-  }
-
-  const snap = useSnapshot(state)
+  /* get any cookies so we can display session information */
+  const cookies = parseCookies()
 
   return (
     <div className='flex flex-col px-8 space-y-3 mt-4 items-center'>
@@ -52,7 +46,7 @@ export default function LogoutCard() {
           </Link>
         </div>
         <div className='border-t border-gray-200 text-center py-4'>
-          <h3 className='text-xs'>Come back soon {snap.email}</h3>
+          <h3 className='text-xs'>Come back soon {cookies.emailAddress}</h3>
           <h3 className='text-xs'> Terms of Service, Privacy Policy</h3>
         </div>
       </div>
