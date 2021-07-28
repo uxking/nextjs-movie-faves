@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { API_URL } from '../../../utils/urls'
+import { state } from '../../../utils/state'
 
-export default function Redirects(ctx) {
+export default function Redirects() {
   const [text, setText] = useState('loading...')
-  const [data, setData] = useState(null)
 
   const router = useRouter()
 
@@ -18,10 +18,12 @@ export default function Redirects(ctx) {
       const data = await res.json()
       console.log(data)
 
+      /* set the email in valtio state */
+      state.email = data.user.email
+
       setText(
-        `You are now logged in ${data.user.email}. You will be redirected in a few seconds...`
+        `You are now logged in ${state.email}. You will be redirected in a few seconds...`
       )
-      setData(data)
 
       /* Once logged in, send user to the home page along with the token */
       setTimeout(

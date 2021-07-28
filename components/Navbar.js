@@ -1,7 +1,14 @@
 import Link from 'next/link'
 import { useState } from 'react'
+import { state } from '../utils/state'
+import { useSnapshot } from 'valtio'
 
 export default function Navbar() {
+  /* get state from valtio proxy to check for a logged in user
+  so we can change the login button to say logout */
+  const snap = useSnapshot(state)
+  let buttonText = !snap.email ? 'Login' : 'Logout'
+
   const [isOpen, setOpen] = useState(false)
 
   const handleMenu = () => {
@@ -60,7 +67,7 @@ export default function Navbar() {
         </Link>
         <Link href='/login'>
           <a className='block px-2 py-1 sm:ml-3 font-semibold rounded hover:bg-sput-pink sm:text-sput-white sm:text-opacity-75 sm:hover:opacity-100 sm:hover:bg-sput-black sm:hover:border-opacity-100 sm:opacity-75 sm:border-2 sm:border-sput-white'>
-            Login
+            {buttonText}
           </a>
         </Link>
       </nav>

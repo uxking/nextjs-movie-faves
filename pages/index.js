@@ -1,6 +1,12 @@
 import nookies from 'nookies'
+import { state } from '../utils/state.js'
+import { useSnapshot } from 'valtio'
 
-export default function Home() {
+export default function Home({ cookie }) {
+  console.log('cookie', cookie.token)
+  const snap = useSnapshot(state)
+
+  console.log(snap.email)
   return (
     <div className='flex flex-col px-8 space-y-3 mt-4 md:px-0'>
       <h1 className='font-semibold text-2xl text-green-sheen'>Home</h1>
@@ -18,13 +24,16 @@ export default function Home() {
 }
 
 export async function getServerSideProps(ctx) {
-  nookies.set(ctx, 'token', ctx.query.token, {
-    maxAge: 30 * 24 * 60 * 60,
-    path: '/',
-    httpOnly: true,
-  })
+  const cookie = nookies.get(ctx)
+  if (!cookie.token && ctx.query.token) {
+    nookies.set(ctx, 'token', ctx.query.token, {
+      maxAge: 30 * 24 * 60 * 60,
+      path: '/',
+      httpOnly: true,
+    })
+  }
 
   return {
-    props: {},
+    props: { cookie },
   }
 }
