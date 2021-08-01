@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <div className='flex flex-col px-8 space-y-3 mt-4 md:px-0'>
+    <div className='flex flex-col px-8 space-y-3 mt-4'>
       <h1 className='font-semibold text-2xl text-green-sheen'>About</h1>
       <p className='text-lg text-us-independence'>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
